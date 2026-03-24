@@ -1,6 +1,6 @@
 backend:
-  name: github
-  repo: ton-pseudo/ton-pseudo.github.io
+  name: zudebo porfolio
+  repo: zudebo34/zudebo34.github.io
   branch: main
 
 media_folder: static/images
