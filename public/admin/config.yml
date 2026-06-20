@@ -2,6 +2,9 @@ backend:
   name: github
   repo: zudebo34/zudebo34.github.io
   branch: main
+  base_url: https://oauth.decapcms.org
+
+site_domain: zudebo34.github.io
 
 media_folder: public/images
 public_folder: /images
