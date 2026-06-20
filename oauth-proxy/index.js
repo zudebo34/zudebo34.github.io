@@ -48,9 +48,13 @@ app.get('/callback', async (req, res) => {
       code: req.query.code,
       redirect_uri: `${PROXY_URL}/callback`,
     });
+    if (!result.token || !result.token.access_token) {
+      throw new Error('No access token received');
+    }
     res.redirect(`${SITE_URL}/admin/#access_token=${result.token.access_token}`);
   } catch (error) {
-    res.status(500).send('Authentication failed');
+    console.error('Token exchange failed:', error.message);
+    res.status(500).send(`Authentication failed: ${error.message}`);
   }
 });
 
