@@ -1,0 +1,11 @@
+{
+  "name": "decap-oauth-proxy",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4",
+    "simple-oauth2": "^5"
+  }
+}
