@@ -4,6 +4,7 @@ import { AuthorizationCode } from 'simple-oauth2';
 const CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 const CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
 const SITE_URL = process.env.SITE_URL || 'https://zudebo34.github.io';
+const PROXY_URL = process.env.PROXY_URL || 'https://zudebo34-github-io.onrender.com';
 const PORT = process.env.PORT || 3000;
 
 const app = express();
@@ -33,7 +34,7 @@ app.get('/', (req, res) => {
 app.get('/auth', (req, res) => {
   if (!client) return res.status(500).send('OAuth client not initialized');
   const authorizationUri = client.authorizeURL({
-    redirect_uri: `${SITE_URL}/admin/`,
+    redirect_uri: `${PROXY_URL}/callback`,
     scope: 'repo',
     state: req.query.state || '',
   });
@@ -45,7 +46,7 @@ app.get('/callback', async (req, res) => {
   try {
     const result = await client.getToken({
       code: req.query.code,
-      redirect_uri: `${SITE_URL}/admin/`,
+      redirect_uri: `${PROXY_URL}/callback`,
     });
     res.redirect(`${SITE_URL}/admin/#access_token=${result.token.access_token}`);
   } catch (error) {
