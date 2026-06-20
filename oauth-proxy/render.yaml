@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: decap-oauth-proxy
+    runtime: node
+    region: frankfurt
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
