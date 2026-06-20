@@ -2,7 +2,7 @@ backend:
   name: github
   repo: zudebo34/zudebo34.github.io
   branch: main
-  base_url: https://ton-proxy.onrender.com
+  base_url: https://zudebo34-github-io.onrender.com
 
 site_domain: zudebo34.github.io
 
