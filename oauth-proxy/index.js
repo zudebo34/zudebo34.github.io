@@ -51,7 +51,8 @@ app.get('/callback', async (req, res) => {
     if (!result.token || !result.token.access_token) {
       throw new Error('No access token received');
     }
-    res.redirect(`${SITE_URL}/admin/#access_token=${result.token.access_token}`);
+    const { access_token, scope, token_type } = result.token;
+    res.redirect(`${SITE_URL}/admin/?access_token=${access_token}&scope=${scope || 'repo'}&token_type=${token_type || 'bearer'}`);
   } catch (error) {
     console.error('Token exchange failed:', error.message);
     res.status(500).send(`Authentication failed: ${error.message}`);

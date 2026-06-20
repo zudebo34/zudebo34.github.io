@@ -6,6 +6,18 @@
   <title>Content Manager</title>
 </head>
 <body>
+  <script>
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var token = params.get('access_token');
+      if (token) {
+        var scope = params.get('scope') || 'repo';
+        var tokenType = params.get('token_type') || 'bearer';
+        var hash = '#access_token=' + token + '&scope=' + scope + '&token_type=' + tokenType;
+        history.replaceState(null, '', window.location.pathname + hash);
+      }
+    })();
+  </script>
   <script src="https://unpkg.com/decap-cms@^3/dist/decap-cms.js"></script>
 </body>
 </html>
