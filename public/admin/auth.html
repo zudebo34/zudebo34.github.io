@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Authentication</title>
+</head>
+<body>
+  <p>Authenticating...</p>
+  <script>
+    var hash = window.location.hash.replace(/^#\/?/, '');
+    var token = new URLSearchParams(hash).get('access_token');
+    if (!token) {
+      token = new URLSearchParams(window.location.search).get('access_token');
+    }
+    if (token && window.opener) {
+      window.opener.postMessage({
+        type: 'oauth_callback',
+        provider: 'github',
+        data: { access_token: token, scope: 'repo', token_type: 'bearer' }
+      }, '*');
+      window.close();
+    } else if (token) {
+      localStorage.setItem('decap-cms-token', token);
+      window.location.href = '/admin/';
+    } else {
+      document.body.textContent = 'Authentication failed: no token received';
+    }
+  </script>
+</body>
+</html>

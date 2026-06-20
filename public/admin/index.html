@@ -7,12 +7,9 @@
 </head>
 <body>
   <script>
-    var hash = window.location.hash.replace(/^#\/?/, '');
-    var params = new URLSearchParams(hash);
-    var token = params.get('access_token') || new URLSearchParams(window.location.search).get('access_token');
+    var token = new URLSearchParams(window.location.search).get('access_token');
     if (token) {
       localStorage.setItem('decap-cms-token', token);
-      localStorage.setItem('decap-cms-github-zudebo34-zudebo34.github.io-token', token);
       history.replaceState(null, '', '/admin/');
     }
   </script>
